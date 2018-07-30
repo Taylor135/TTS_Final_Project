@@ -1,5 +1,18 @@
-<h1>Welcome <%=current_user.username %></h1>
-<h2>Current Blog Posts</h2>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<div class="box">
+<h1>Welcome
+  <%=current_user.username %></h1><br>
+</div>
+<div class="container_2">
+  <h2>
+  <i class="glyphicon glyphicon-align-right"></i>
+  <span class="style_ann">Announcements</span>
+  <i class="glyphicon glyphicon-align-left"></i>
+</h2><br>
 <div class="row">
   <% @blog_posts.each do |blog_post| %>
     <div class="col-md-12">
@@ -8,20 +21,50 @@
           <%= blog_post.title %>
         </div>
         <div class="panel-body">
-          by <em><%= link_to blog_post.user.username, user_posts_path(name: blog_post.user.username) %></em><br> <!-- "Delete to Open Page" -->
-          <p><i>Created: <%= time_ago_in_words(blog_post.created_at) %> ago</i></p>
-          <p><% blog_post.blog_entry %></p>
+          by
+          <em><%= link_to blog_post.user.username, user_posts_path(name: blog_post.user.username) %></em><br>
+          <!-- "Delete to Open Page" -->
+          <p>
+            <i>Created:
+              <%= time_ago_in_words(blog_post.created_at) %>
+              ago</i>
+          </p>
+          <p>
+            <% blog_post.blog_entry %>
+            </p>
           </div>
           <div class="panel-footer">
             <%= link_to "Show", blog_post, class: "btn btn-info" %>
             <% if current_user.id == blog_post.user_id %>
-            <%= link_to "Edit", edit_blog_post_path(blog_post), class: "btn btn-warning" %>
-            <%= link_to "Destroy", blog_post_path(blog_post), method: :delete, data: { confirm: "Are you sure?"},class: "btn btn-danger" %>
+              <%= link_to "Edit", edit_blog_post_path(blog_post), class: "btn btn-warning" %>
+              <%= link_to "Destroy", blog_post_path(blog_post), method: :delete, data: { confirm: "Are you sure?"},class: "btn btn-danger" %>
             <% end %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-  <%= link_to "New Blog Post", new_blog_post_path, class: "btn btn-success" %>
+  <%= link_to "New Announcement", new_blog_post_path, class: "btn btn-success" %>
   <%= paginate @blog_posts%>
+</div>
+
+<style>
+
+h1 {
+  font-style: italic;
+  color: White;
+  font-size: 45px;
+  border-radius: 25px;
+  /* margin: 2.5px; */
+  padding: 20px;
+  border: 3px solid black;
+  background-color: black;
+
+}
+
+.style_ann {
+  font-size: 50px;
+
+}
+</style>
+</html>

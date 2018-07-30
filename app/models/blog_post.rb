@@ -6,6 +6,6 @@ class BlogPost < ApplicationRecord
   validates :title, :blog_entry, presence: true
   validates :title, uniqueness: true, length: {maximum: 140}
 
-  paginates_per 3
+  paginates_per 5
 
 end

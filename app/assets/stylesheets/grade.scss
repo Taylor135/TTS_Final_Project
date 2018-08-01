@@ -81,7 +81,7 @@ dropdown input:checked ~ ul{
   opacity: 1;
   top: 0;
 }
-$colors: #E74C3C, #0072B5, #2C3E50;
+$colors: #ffaf25, #ffaf25, #ffaf25;
 
 @for $i from 1 through length($colors) {
   dropdown ul li:nth-child(#{$i}) {
